@@ -6,7 +6,7 @@ import { ItemsContext } from '../../contexts/itemsContext';
 export default function ItemsList() {
   const { removeItem, items } = useContext(ItemsContext);
 
-  const onClickRemove = (index) => {
+  const onClickRemove = (index) => () => {
     removeItem(index);
   }
 
@@ -26,7 +26,7 @@ export default function ItemsList() {
             <td>{index}</td>
             <td>{item.name}</td>
             <td>{item.size}</td>
-            <td><Button onClick={onClickRemove}>Remove</Button></td>
+            <td><Button size="sm" variant="danger" onClick={onClickRemove(index)}>Remove</Button></td>
           </tr>)
         )}
       </tbody>

@@ -3,6 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import { useFormik } from 'formik';
 
 import { ItemsContext } from '../../contexts/itemsContext';
+import validate from './validation';
 
 export default function ItemsForm() {
   const { createItem } = useContext(ItemsContext);
@@ -12,11 +13,12 @@ export default function ItemsForm() {
       name: '',
       size: '',
     },
-    onSubmit: values => {
+    validate,
+    onSubmit: (values, { resetForm }) => {
       createItem(values);
+      resetForm();
     },
   });
-
 
   return (
     <Card>
@@ -31,6 +33,7 @@ export default function ItemsForm() {
               onChange={formik.handleChange}
               value={formik.values.name}
             />
+            <Form.Text>{formik.errors.name}</Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="size">
@@ -41,11 +44,12 @@ export default function ItemsForm() {
               onChange={formik.handleChange}
               value={formik.values.size}
             />
+            <Form.Text>{formik.errors.size}</Form.Text>
           </Form.Group>
 
           <Button variant="primary" type="submit">
             Submit
-      </Button>
+          </Button>
         </Form>
       </Card.Body>
     </Card>

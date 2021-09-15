@@ -16,7 +16,9 @@ const ItemsProvider = ({ children }) => {
   const removeItem = (index) => {
     if (!items[index]) return;
 
-    setItems(items.splice(index, 1));
+    const clonedItems = [...items];
+    clonedItems.splice(index, 1)
+    setItems(clonedItems);
   }
 
   return (
