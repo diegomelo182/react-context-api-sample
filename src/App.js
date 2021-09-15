@@ -14,14 +14,14 @@ function App() {
           <h1>Context API Example</h1>
         </Row>
         <Row>
-          <Col md={6}>
+          <Col md={12}>
             <ItemsForm />
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ marginTop: 10 }}>
           <Col>
-            <p>Items list:</p>
+            <h2>Items list:</h2>
             <ItemsList />
           </Col>
         </Row>
